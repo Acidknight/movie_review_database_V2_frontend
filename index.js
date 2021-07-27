@@ -13,6 +13,7 @@ function getMovies() {
                 <div data-id=${movie.id}>
                 <img src=${movie.attributes.image_url}
                 height="200" width="250"
+                <br></br>
                 <h3>${movie.attributes.title}</h3>
                 <p>${movie.attributes.description}</p>
                 <p>${movie.attributes.release_year}</p>
