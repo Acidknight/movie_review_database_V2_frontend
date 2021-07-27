@@ -21,6 +21,8 @@ function getMovies() {
                 <button data-id-${movie.id}>edit</button>
             </div>
             <br></br>` ;
+
+            document.querySelector('#movie-container').innerHTML += movieMarkup
         })
     })
 }
