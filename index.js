@@ -27,6 +27,7 @@ function getMovies() {
             </div>
             <br></br>` ;
 
+
             document.querySelector('#movie-container').innerHTML += movieMarkup
         })
     })
@@ -39,7 +40,7 @@ function createFormHandler(e){
     const descriptionInput = document.querySelector('#input-description').value
     const imageInput = document.querySelector('#input-url').value
     const actorsInput = document.querySelector('#input-starring_actors').value
-    const genreID = parseInt (document.querySelector('#genres').value)
+    const genreID = parseInt(document.querySelector('#genres').value)
     postFetch(titleInput, releaseYearInput, descriptionInput, imageInput, actorsInput, genreID)
 }
 
@@ -54,20 +55,22 @@ function postFetch(title, release_year, description, image_url, starring_actors,
     .then(movie => {
         const movieData = movie.data
         const movieMarkup = `
-        <div data-id=${movie.id}>
-            <img src=${movieData.image_url} height="200" width="250">
-            <h3>${movieData.title}</h3>
-            <p>${movieData.release_year}</p>
-            <p>${movieData.description}</p>
-            <p>${movieData.starring_actors}</p>
-            <p>${movieData.genreID}</p>
-            <button data-id=${movieData.id}>edit</button>
+        <div data-id=${movie.data.id}>
+                <img src=${movie.data.attributes.image_url}
+                height="200" width="250"
+                <br></br>
+                <h3>Title: ${movie.data.attributes.title}</h3>
+                <p>Description: ${movie.data.attributes.description}</p>
+                <p>Release Year: ${movie.data.attributes.release_year}</p>
+                <p>Starring Actors: ${movie.data.attributes.starring_actors}</p>
+                <p>Genre: ${movie.data.attributes.genre.name}</p>
+                <button data-id-${movie.data.id}>edit</button>
         </div>
         <br><br>`;
+        
 
         document.querySelector('#movie-container').innerHTML += movieMarkup;
         
 
     })
 }
-
