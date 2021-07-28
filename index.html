@@ -8,6 +8,36 @@
 
     <body>
 
+        <div class="form-container">
+            
+            <form id="create-movie-form" style="">
+                <h3>Create a Movie!</h3>
+
+                <input id='input-title' type="text" name="title" value="" placeholder="Enter your movie name" class="input-text">
+                <br><br>
+                <input id='input-release_year' type="text" name="release_year" value="" placeholder="Enter movie's release year" class="input-text">
+                <textarea id='input-description' name="description" rows="10" cols="80" value="" placeholder="Enter your movie's description"></textarea>
+                <br><br>
+                <input id='input-url' type="text" name="image" value="" placeholder="Enter your movie image url" class="input-text">
+                <br><br>
+
+                <select id="genres" name="genres">
+                    <option value="1">Comedy</option>
+                    <option value="2">Horror</option>
+                    <option value="3">Action</option>
+                    <option value="4">Romance</option>
+                    <option value="5">Sci-fi</option>
+                    <option value="6">Mystery</option>
+                    <option value="7">Suspense</option>
+                </select>
+                <br><br>
+
+                <input id= 'create-button' type="submit" name="submit" value="Create New Movie" class="submit">
+            </form>
+
+
+        </div>
+
         <div id="movie-container"></div>
 
     </body>
