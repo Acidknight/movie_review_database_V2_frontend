@@ -3,9 +3,9 @@ const endPoint = "http://localhost:3000/api/v1/movies"
 document.addEventListener('DOMContentLoaded', () => {
     getMovies()
 
-    const createMovieForm = document.querySelector("create-movie-form")
+    const createMovieForm = document.querySelector("#create-movie-form")
 
-    createMovieForm.addEventListener("submit", (e) => createFormHandler())
+    createMovieForm.addEventListener("submit", (e) => createFormHandler(e))
 })
 
 function getMovies() {
@@ -43,5 +43,31 @@ function createFormHandler(e){
     postFetch(titleInput, releaseYearInput, descriptionInput, imageInput, actorsInput, genreID)
 }
 
-function postFetch()
+function postFetch(title, release_year, description, image_url, starring_actors, genre_id) {
+    const bodyData = {title, release_year, description, image_url, starring_actors, genre_id}
+    fetch(endPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(response => response.json())
+    .then(movie => {
+        const movieData = movie.data
+        const movieMarkup = `
+        <div data-id=${movie.id}>
+            <img src=${movieData.image_url} height="200" width="250">
+            <h3>${movieData.title}</h3>
+            <p>${movieData.release_year}</p>
+            <p>${movieData.description}</p>
+            <p>${movieData.starring_actors}</p>
+            <p>${movieData.genre.name}</p>
+            <button data-id=${movieData.id}>edit</button>
+        </div>
+        <br><br>`;
+
+        document.querySelector('#movie-container').innerHTML += movieMarkup;
+        
+
+    })
+}
 
