@@ -39,6 +39,7 @@ function createFormHandler(e){
     const descriptionInput = document.querySelector('#input-description').value
     const imageInput = document.querySelector('#input-url').value
     const actorsInput = document.querySelector('#input-starring_actors').value
-    const genreInput = document.querySelector('#genres').value
+    const genreID = parseInt (document.querySelector('#genres').value)
+    postFetch()
 }
 
