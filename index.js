@@ -2,6 +2,10 @@ const endPoint = "http://localhost:3000/api/v1/movies"
 
 document.addEventListener('DOMContentLoaded', () => {
     getMovies()
+
+    const createMovieForm = document.querySelector("create-movie-form")
+
+    createMovieForm.addEventListener("submit", (e) => createFormHandler())
 })
 
 function getMovies() {
