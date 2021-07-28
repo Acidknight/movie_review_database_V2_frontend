@@ -40,6 +40,8 @@ function createFormHandler(e){
     const imageInput = document.querySelector('#input-url').value
     const actorsInput = document.querySelector('#input-starring_actors').value
     const genreID = parseInt (document.querySelector('#genres').value)
-    postFetch()
+    postFetch(titleInput, releaseYearInput, descriptionInput, imageInput, actorsInput, genreID)
 }
+
+function postFetch()
 
