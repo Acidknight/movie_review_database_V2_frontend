@@ -14,11 +14,11 @@ function getMovies() {
                 <img src=${movie.attributes.image_url}
                 height="200" width="250"
                 <br></br>
-                <h3>${movie.attributes.title}</h3>
-                <p>${movie.attributes.description}</p>
-                <p>${movie.attributes.release_year}</p>
-                <p>${movie.attributes.starring_actors}</p>
-                <p>${movie.attributes.genre.name}</p>
+                <h3>Title: ${movie.attributes.title}</h3>
+                <p>Description: ${movie.attributes.description}</p>
+                <p>Release Year: ${movie.attributes.release_year}</p>
+                <p>Starring Actors: ${movie.attributes.starring_actors}</p>
+                <p>Genre: ${movie.attributes.genre.name}</p>
                 <button data-id-${movie.id}>edit</button>
             </div>
             <br></br>` ;
