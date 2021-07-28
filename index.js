@@ -32,3 +32,13 @@ function getMovies() {
     })
 }
 
+function createFormHandler(e){
+    e.preventDefault()
+    const titleInput = document.querySelector('#input-title').value
+    const releaseYearInput = document.querySelector('#input-release_year').value
+    const descriptionInput = document.querySelector('#input-description').value
+    const imageInput = document.querySelector('#input-url').value
+    const actorsInput = document.querySelector('#input-starring_actors').value
+    const genreInput = document.querySelector('#genres').value
+}
+
