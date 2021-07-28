@@ -60,7 +60,7 @@ function postFetch(title, release_year, description, image_url, starring_actors,
             <p>${movieData.release_year}</p>
             <p>${movieData.description}</p>
             <p>${movieData.starring_actors}</p>
-            <p>${movieData.genre.name}</p>
+            <p>${movieData.genreID}</p>
             <button data-id=${movieData.id}>edit</button>
         </div>
         <br><br>`;
