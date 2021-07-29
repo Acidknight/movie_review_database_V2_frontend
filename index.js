@@ -13,7 +13,13 @@ function getMovies() {
     .then(response => response.json())
     .then(movies => {
         movies.data.forEach(movie => {
-            const movieMarkup = `
+            render(movie) 
+        })
+    })
+}
+
+function render(movie){
+    const movieMarkup = `
                 <div data-id=${movie.id}>
                 <img src=${movie.attributes.image_url}
                 height="200" width="250"
@@ -29,8 +35,6 @@ function getMovies() {
 
 
             document.querySelector('#movie-container').innerHTML += movieMarkup
-        })
-    })
 }
 
 function createFormHandler(e){
@@ -54,23 +58,6 @@ function postFetch(title, release_year, description, image_url, starring_actors,
     .then(response => response.json())
     .then(movie => {
         const movieData = movie.data
-        const movieMarkup = `
-        <div data-id=${movie.data.id}>
-                <img src=${movie.data.attributes.image_url}
-                height="200" width="250"
-                <br></br>
-                <h3>Title: ${movie.data.attributes.title}</h3>
-                <p>Description: ${movie.data.attributes.description}</p>
-                <p>Release Year: ${movie.data.attributes.release_year}</p>
-                <p>Starring Actors: ${movie.data.attributes.starring_actors}</p>
-                <p>Genre: ${movie.data.attributes.genre.name}</p>
-                <button data-id-${movie.data.id}>edit</button>
-        </div>
-        <br><br>`;
-        
-
-        document.querySelector('#movie-container').innerHTML += movieMarkup;
-        
-
+        render(movieData)
     })
 }
