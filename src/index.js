@@ -13,6 +13,9 @@ function getMovies() {
     .then(response => response.json())
     .then(movies => {
         movies.data.forEach(movie => {
+
+            let newMovie = new Movie(movie, movie.attributes)
+            
             render(movie) 
         })
     })
