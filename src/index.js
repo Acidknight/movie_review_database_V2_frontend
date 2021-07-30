@@ -46,6 +46,9 @@ function postFetch(title, release_year, description, image_url, starring_actors,
     .then(response => response.json())
     .then(movie => {
         const movieData = movie.data
-        render(movieData)
+        let newMovie = new Movie(movieData, movieData.attributes)
+
+        document.querySelector('#movie-container').innerHTML += newMovie.renderMovieCard()
+        newMovie.renderMovieCard()
     })
 }

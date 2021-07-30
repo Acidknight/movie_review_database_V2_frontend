@@ -12,7 +12,6 @@ class Movie {
     }
 
     renderMovieCard(){
-        
         return `
             <div data-id=${this.id}>
             <img src=${this.image_url}
