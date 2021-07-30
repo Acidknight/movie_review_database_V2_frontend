@@ -15,30 +15,15 @@ function getMovies() {
         movies.data.forEach(movie => {
 
             let newMovie = new Movie(movie, movie.attributes)
+
+            document.querySelector('#movie-container').innerHTML += newMovie.renderMovieCard()
+            newMovie.renderMovieCard()
             
-            render(movie) 
+            //render(movie) 
         })
     })
 }
-
-function render(movie){
-    const movieMarkup = `
-                <div data-id=${movie.id}>
-                <img src=${movie.attributes.image_url}
-                height="200" width="250"
-                <br></br>
-                <h3>Title: ${movie.attributes.title}</h3>
-                <p>Description: ${movie.attributes.description}</p>
-                <p>Release Year: ${movie.attributes.release_year}</p>
-                <p>Starring Actors: ${movie.attributes.starring_actors}</p>
-                <p>Genre: ${movie.attributes.genre.name}</p>
-                <button data-id-${movie.id}>edit</button>
-            </div>
-            <br></br>` ;
-
-
-            document.querySelector('#movie-container').innerHTML += movieMarkup
-}
+    
 
 function createFormHandler(e){
     e.preventDefault()
