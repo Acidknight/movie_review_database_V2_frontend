@@ -1,4 +1,5 @@
-const endPoint = "http://127.0.0.1:3000/api/v1/movies"
+const baseUrl = "http://127.0.0.1:3000"
+const movieUrl = `${baseUrl}/api/v1/movies`
 
 document.addEventListener('DOMContentLoaded', () => {
     getMovies()
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function getMovies() {
-    fetch(endPoint)
+    fetch(movieUrl)
     .then(response => response.json())
     .then(movies => {
         movies.data.forEach(movie => {
@@ -38,7 +39,7 @@ function createFormHandler(e){
 
 function postFetch(title, release_year, description, image_url, starring_actors, genre_id) {
     const bodyData = {title, release_year, description, image_url, starring_actors, genre_id}
-    fetch(endPoint, {
+    fetch(movieUrl, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
