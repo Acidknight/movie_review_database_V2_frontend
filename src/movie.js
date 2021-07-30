@@ -1,1 +1,6 @@
-console.log("in movie");
+class Movie {
+
+    constructor({
+        
+    })
+}
