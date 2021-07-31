@@ -23,13 +23,33 @@ class Movie {
             <p>Starring Actors: ${this.starring_actors}</p>
             <p>Genre: ${this.genre.name}</p>
             <button data-id-${this.id}>edit</button>
+            <button data-id="${this.id}" class="delete-movie-button">Delete Movie?</button>
         </div>
         <br></br>` ;
     
     
-                document.querySelector('#movie-container').innerHTML += movieMarkup
+        document.querySelector('#movie-container').innerHTML += movieMarkup
     }
 
+}
+
+function deleteMovie(movie, movieAttributes) {
+    debugger
+    let movieId = movie.id
+    fetch(`http://localhost:3000/movies/${movieId}`,{
+      method: 'DELETE'
+      })
+        .then(resp => resp.json())
+        .then(json => {
+        let selectedMovie = document.querySelector(`.card[id="${movieId}"]`)
+        selectedMovie.remove()
+    })
+  }
+
+  function addCategoriesClickListeners() {
+    document.querySelectorAll('.delete-movie-button').forEach(element => {
+        element.addEventListener("click", deleteMovie)
+    })
 }
 
 Movie.all = [];

@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const createMovieForm = document.querySelector("#create-movie-form")
 
     createMovieForm.addEventListener("submit", (e) => createFormHandler(e))
+
+    const movieContainer = document.querySelector('#movie-container')
+
+    movieContainer.addEventListener('click', e => {
+    console.log('clicked');
 })
 
 function getMovies() {
@@ -46,9 +51,11 @@ function postFetch(title, release_year, description, image_url, starring_actors,
     .then(response => response.json())
     .then(movie => {
         const movieData = movie.data
+
         let newMovie = new Movie(movieData, movieData.attributes)
 
         document.querySelector('#movie-container').innerHTML += newMovie.renderMovieCard()
         newMovie.renderMovieCard()
     })
 }
+})
