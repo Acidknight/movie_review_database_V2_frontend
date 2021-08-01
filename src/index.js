@@ -1,30 +1,27 @@
 const endPoint = "http://127.0.0.1:3000/api/v1/movies"
 
 document.addEventListener('DOMContentLoaded', () => {
+    const app = new App();
+    app.attachEventListeners();
+
     getMovies()
 
     const createMovieForm = document.querySelector("#create-movie-form")
 
     createMovieForm.addEventListener("submit", (e) => createFormHandler(e))
-
-    const movieContainer = document.querySelector('#movie-container')
-
-    movieContainer.addEventListener('click', e => {
-    console.log('clicked');
+    
 })
-
+  
 function getMovies() {
     fetch(endPoint)
     .then(response => response.json())
     .then(movies => {
         movies.data.forEach(movie => {
 
-            let newMovie = new Movie(movie, movie.attributes)
+            const newMovie = new Movie(movie.id, movie.attributes)
 
-            document.querySelector('#movie-container').innerHTML += newMovie.renderMovieCard()
-            newMovie.renderMovieCard()
+            document.querySelector('#movie-container').innerHTML += newMovie.renderMovieCard();
             
-            //render(movie) 
         })
     })
 }
@@ -50,12 +47,37 @@ function postFetch(title, release_year, description, image_url, starring_actors,
     })
     .then(response => response.json())
     .then(movie => {
-        const movieData = movie.data
 
-        let newMovie = new Movie(movieData, movieData.attributes)
+        const newMovie = new Movie(movie.data.id, movie.data.attributes)
 
         document.querySelector('#movie-container').innerHTML += newMovie.renderMovieCard()
-        newMovie.renderMovieCard()
     })
 }
-})
+
+function updateFormHandler(e) {
+    e.preventDefault();
+    const id = parseInt(e.target.dataset.id);
+    const movie = Movie.findById(id);
+    const title = e.target.querySelector('#input-title').value;
+    const description = e.target.querySelector('#input-description').value;
+    const release_year = e.target.querySelector('#release+year').value;
+    const starring_actors = e.target.querySelector('#starring_actors').value;
+    const image_url = e.target.querySelector('#input-url').value;
+    const genre_id = parseInt(e.target.querySelector('#genres').value);
+    patchMovie(movie, title, description, release_year, starring_actors, image_url, genre_id)
+  }
+
+  function patchMovie(movie, title, description, release_year, starring_actors, image_url, genre_id) {
+    const bodyJSON = {title, description, release_year, starring_actors, image_url, genre_id}
+    fetch(`http://localhost:3000/api/v1/movies/${movie.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(bodyJSON),
+    })
+      .then(res => res.json())
+      // our backend responds with the updated syllabus instance represented as JSON
+      .then(updatedNote => console.log(updatedNote));
+  }
