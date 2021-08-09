@@ -14,7 +14,7 @@ class Movie {
 
     renderMovieCard(){
         return `
-            <div data-id=${this.id}>
+            <div id=${this.id}>
             <img src=${this.image_url}
             height="200" width="250"
             <br></br>
@@ -28,6 +28,8 @@ class Movie {
         <br></br>` ;
         }  
         
-      static findById = (id) => this.all.find((weapon) => parseInt(weapon.id) === id);
+      static findById(id) {
+          return this.all.find(movie => movie.id === id);
       }
+    }
 Movie.all = [];
